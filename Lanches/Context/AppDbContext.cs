@@ -9,9 +9,11 @@ public class AppDbContext : DbContext
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
+    /*
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         var connectionString = "Server=172.31.6.9; Database=HeartEFCore;User ID=sa;Password=AT@123;pooling=true;TrustServerCertificate=true";
         optionsBuilder.UseSqlServer(connectionString);
     }
+    */
 }
