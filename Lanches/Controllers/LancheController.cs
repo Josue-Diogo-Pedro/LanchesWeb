@@ -14,7 +14,10 @@ public class LancheController : Controller
 
     public IActionResult List()
     {
+        ViewData["Titulo"] = "Todos os Lanches";
+
         var lanches = _lancheRepository.Lanches;
+
         return View(lanches);
     }
 }
