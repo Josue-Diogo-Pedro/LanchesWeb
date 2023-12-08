@@ -1,4 +1,5 @@
 ﻿using Lanches.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lanches.Models;
 
@@ -82,5 +83,30 @@ public class CarrinhoCompra
         }
         _context.SaveChanges();
         return quantidadeLocal;
+    }
+
+    public List<CarrinhoCompraItem> GetCarrinhoCompraItens() => CarrinhoCompraItens ??
+        (CarrinhoCompraItens =
+        _context.CarrinhoCompraItens
+        .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+        .Include(l => l.Lanche)
+        .ToList());
+    
+    public void LimparCarrinho()
+    {
+        var carrinhoItens = _context.CarrinhoCompraItens
+            .Where(c => c.CarrinhoCompraId == CarrinhoCompraId);
+
+        _context.CarrinhoCompraItens.RemoveRange(carrinhoItens);
+        _context.SaveChanges();
+    }
+
+    public decimal GetCarrinhoCompraTotal()
+    {
+        var total = _context.CarrinhoCompraItens
+            .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+            .Select(c => c.Quantidade*c.Lanche.Preco).Sum();
+
+        return total;
     }
 }
