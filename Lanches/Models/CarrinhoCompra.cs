@@ -36,4 +36,27 @@ public class CarrinhoCompra
             CarrinhoCompraId = carrinhoId
         };
     }
+
+    public void AdicionarAoCarrinho(Lanche lanche)
+    {
+        var carrinhoCompraItem = _context.CarrinhoCompraItens
+            .FirstOrDefault(c => c.CarrinhoCompraId == CarrinhoCompraId
+            && c.Lanche.LancheId == lanche.LancheId);
+
+        if(carrinhoCompraItem is null)
+        {
+            carrinhoCompraItem = new CarrinhoCompraItem
+            {
+                CarrinhoCompraId = CarrinhoCompraId,
+                Lanche = lanche,
+                Quantidade = 1
+            };
+            _context.CarrinhoCompraItens.Add(carrinhoCompraItem);
+        }
+        else
+        {
+            carrinhoCompraItem.Quantidade++;
+        }
+        _context.SaveChanges();
+    }
 }
