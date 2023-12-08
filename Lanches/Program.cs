@@ -20,7 +20,7 @@ builder.Services.AddControllersWithViews();
 
 // Habilitando o Session e o HttpContext
 builder.Services.AddMemoryCache();
-builder.Services.AddSession();
+builder.Services.AddSession(); 
 
 var app = builder.Build();
 
