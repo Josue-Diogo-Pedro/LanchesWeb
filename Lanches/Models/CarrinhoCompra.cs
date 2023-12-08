@@ -59,4 +59,28 @@ public class CarrinhoCompra
         }
         _context.SaveChanges();
     }
+
+    public int RemoverDoCarrinho(Lanche lanche)
+    {
+        var carrinoCompraItem = _context.CarrinhoCompraItens
+            .FirstOrDefault(c => c.CarrinhoCompraId == CarrinhoCompraId &&
+                c.Lanche.LancheId == lanche.LancheId);
+
+        var quantidadeLocal = 0;
+
+        if(carrinoCompraItem is not null)
+        {
+            if(carrinoCompraItem.Quantidade > 1)
+            {
+                carrinoCompraItem.Quantidade--;
+                quantidadeLocal = carrinoCompraItem.Quantidade;
+            }
+            else
+            {
+                _context.CarrinhoCompraItens.Remove(carrinoCompraItem);
+            }
+        }
+        _context.SaveChanges();
+        return quantidadeLocal;
+    }
 }
