@@ -31,7 +31,7 @@ public class CarrinhoCompraController : Controller
 		return View(carrinhoCompraVM);
 	}
 
-	public IActionResult AdidiconarItemNoCarrinho(int lancheId)
+	public IActionResult AdidiconarItemNoCarrinhoCompra(int lancheId)
 	{
 		var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(l => l.LancheId == lancheId);
 
@@ -43,7 +43,7 @@ public class CarrinhoCompraController : Controller
 		return RedirectToAction(nameof(Index));
 	}
 
-	public IActionResult RemoverDoCarrinho(int lancheId)
+	public IActionResult RemoverItemDoCarrinhoCompra(int lancheId)
 	{
 		var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(l => l.LancheId == lancheId);
 
