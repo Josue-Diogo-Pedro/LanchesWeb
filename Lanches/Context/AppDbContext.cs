@@ -7,8 +7,10 @@ public class AppDbContext : DbContext
     public DbSet<Categoria> Categorias { get; set; }
     public DbSet<Lanche> Lanches { get; set; }
     public DbSet<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
+    public DbSet<Pedido> Pedidos { get; set; }
+    public DbSet<PedidoDetalhe> PedidoDetalhes { get; set; }
 
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { } 
 
     /*
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
