@@ -13,6 +13,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddTransient<ILancheRepository, LancheRepository>();
+builder.Services.AddTransient<IPedidoRepostitory, PedidoRepository>();
+
 builder.Services.AddScoped(service => CarrinhoCompra.GetCarrinho(service));
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
