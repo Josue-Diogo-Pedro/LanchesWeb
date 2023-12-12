@@ -16,6 +16,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
+/*
 builder.Services.Configure<IdentityOptions>(options =>
 {
     //Default password settings
@@ -26,6 +27,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredLength = 3;
     options.Password.RequiredUniqueChars = 1;
 });
+*/
 
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddTransient<ILancheRepository, LancheRepository>();
