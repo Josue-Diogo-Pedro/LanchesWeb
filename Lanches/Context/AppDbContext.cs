@@ -1,8 +1,10 @@
 ﻿using Lanches.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 namespace Lanches.Context;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<IdentityUser>
 {
     public DbSet<Categoria> Categorias { get; set; }
     public DbSet<Lanche> Lanches { get; set; }
