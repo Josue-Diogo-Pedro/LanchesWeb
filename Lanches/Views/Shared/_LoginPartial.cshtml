@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+
+@if(signInManager.IsSignedIn(User)){
+	<form asp-controller="Account" asp-action="Logout" id="logoutForm">
+
+	</form>
+}
+else
+{
+	
+}
