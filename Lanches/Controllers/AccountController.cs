@@ -1,9 +1,11 @@
 ﻿using Lanches.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lanches.Controllers;
 
+[Authorize]
 public class AccountController : Controller
 {
     private readonly UserManager<IdentityUser> _userManager;
@@ -16,6 +18,7 @@ public class AccountController : Controller
         _signInManager = signInManager;
     }
 
+    [AllowAnonymous]
     public IActionResult Login(string returnUrl)
     {
         return View(new LoginViewModel
@@ -24,7 +27,8 @@ public class AccountController : Controller
         });
     }
 
-    [HttpPost]
+	[AllowAnonymous]
+	[HttpPost]
     public async Task<IActionResult> Login(LoginViewModel loginVM)
     {
         if(!ModelState.IsValid)
@@ -48,12 +52,14 @@ public class AccountController : Controller
         return View(loginVM);
     }
 
-    public IActionResult Register()
+	[AllowAnonymous]
+	public IActionResult Register()
     {
         return View();
     }
 
-    [HttpPost]
+	[AllowAnonymous]
+	[HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(LoginViewModel registroVM)
     {
@@ -74,7 +80,8 @@ public class AccountController : Controller
         return View(registroVM);
     }
 
-    [HttpPost]
+	[AllowAnonymous]
+	[HttpPost]
     public async Task<IActionResult> Logout()
     {
         HttpContext.Session.Clear();

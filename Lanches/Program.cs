@@ -64,10 +64,12 @@ app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
+
 app.MapControllerRoute(
     name: "categiriaFiltro",
     pattern: "Lanche/{action}/{categoria?}",
     defaults: new { Controller = "Lanche", action = "List" });
+
 
 app.MapControllerRoute(
     name: "default",

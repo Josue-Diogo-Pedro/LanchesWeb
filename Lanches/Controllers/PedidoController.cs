@@ -1,5 +1,6 @@
 ﻿using Lanches.Models;
 using Lanches.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lanches.Controllers;
@@ -15,12 +16,14 @@ public class PedidoController : Controller
         _carrinhoCompra = carrinhoCompra;
     }
 
-    [HttpGet]
+	[Authorize]
+	[HttpGet]
     public IActionResult Checkout()
     {
         return View();
     }
 
+    [Authorize]
     [HttpPost]
     public IActionResult Checkout(Pedido pedido)
     {
