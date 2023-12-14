@@ -57,12 +57,12 @@ public class SeedUserRoleInitial : ISeedUserRoleInitial
                 _userManager.AddToRoleAsync(user, "Member").Wait();
             }
         }
-        if(_userManager.FindByEmailAsync("admin@admin").Result is null)
+        if(_userManager.FindByEmailAsync("admin@localhost").Result is null)
         {
-            user.UserName = "admin@admin";
-            user.Email = "admin@admin";
-            user.NormalizedUserName = "ADMIN@ADMIN";
-            user.NormalizedEmail = "ADMIN@ADMIN";
+            user.UserName = "admin@localhost";
+            user.Email = "admin@localhost";
+            user.NormalizedUserName = "ADMIN@LOCALHOST";
+            user.NormalizedEmail = "ADMIN@LOCALHOST";
             user.EmailConfirmed = true;
             user.LockoutEnabled = false;
             user.SecurityStamp= Guid.NewGuid().ToString();
