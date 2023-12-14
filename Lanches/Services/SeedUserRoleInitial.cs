@@ -25,7 +25,7 @@ public class SeedUserRoleInitial : ISeedUserRoleInitial
             role.NormalizedName = "MEMBER";
             roleResult = _roleManager.CreateAsync(role).Result;
         }
-        else
+        if(!_roleManager.RoleExistsAsync("Admin").Result)
         {
             role = new IdentityRole();
             role.Name = "Admin";
@@ -57,7 +57,7 @@ public class SeedUserRoleInitial : ISeedUserRoleInitial
                 _userManager.AddToRoleAsync(user, "Member").Wait();
             }
         }
-        if(_userManager.FindByEmailAsync("admin@admin") is null)
+        if(_userManager.FindByEmailAsync("admin@admin").Result is null)
         {
             user.UserName = "admin@admin";
             user.Email = "admin@admin";

@@ -35,9 +35,9 @@ builder.Services.AddTransient<ILancheRepository, LancheRepository>();
 builder.Services.AddTransient<IPedidoRepostitory, PedidoRepository>();
 builder.Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(service => CarrinhoCompra.GetCarrinho(service));
 
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -61,11 +61,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-//Cria os perfis
-app.Services.GetService<ISeedUserRoleInitial>().SeedRoles();
-
-//Cria os usuarios
-app.Services.GetService<ISeedUserRoleInitial>().SeedUsers();
+using (var scope = app.Services.CreateScope())
+{
+    var seedUserRoleInitial = scope.ServiceProvider.GetRequiredService<ISeedUserRoleInitial>();
+    seedUserRoleInitial.SeedRoles();
+    seedUserRoleInitial.SeedUsers();
+}
 
 app.UseSession();
 
