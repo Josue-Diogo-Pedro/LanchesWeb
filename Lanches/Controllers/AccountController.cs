@@ -70,6 +70,7 @@ public class AccountController : Controller
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "Member");
                 return RedirectToAction(nameof(Login), "Account");
             }
             else

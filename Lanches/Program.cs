@@ -2,6 +2,7 @@ using Lanches.Context;
 using Lanches.Models;
 using Lanches.Repositories;
 using Lanches.Repositories.Interfaces;
+using Lanches.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,6 +33,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddTransient<ILancheRepository, LancheRepository>();
 builder.Services.AddTransient<IPedidoRepostitory, PedidoRepository>();
+builder.Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 
 builder.Services.AddScoped(service => CarrinhoCompra.GetCarrinho(service));
 
@@ -58,6 +60,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+//Cria os perfis
+app.Services.GetService<ISeedUserRoleInitial>().SeedRoles();
+
+//Cria os usuarios
+app.Services.GetService<ISeedUserRoleInitial>().SeedUsers();
 
 app.UseSession();
 
