@@ -5,6 +5,7 @@ using Lanches.Repositories.Interfaces;
 using Lanches.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +51,13 @@ builder.Services.AddScoped(service => CarrinhoCompra.GetCarrinho(service));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Adicionando configuração para paginação
+builder.Services.AddPaging(options =>
+{
+    options.ViewName = "Bootstrap4";
+    options.PageParameterName = "pageindex";
+});
 
 // Habilitando o Session e o HttpContext
 builder.Services.AddMemoryCache();
