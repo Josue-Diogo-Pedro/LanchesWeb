@@ -1,5 +1,6 @@
 ﻿using Lanches.Context;
 using Lanches.Models;
+using Lanches.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,28 @@ namespace Lanches.Areas.Admin.Controllers
         //{
         //    return View(await _context.Pedidos.ToListAsync());
         //}
+
+        public IActionResult PedidoLanches(int? id)
+        {
+            var pedido = _context.Pedidos
+                            .Include(p => p.PedidoItens)
+                            .ThenInclude(l => l.Lanche)
+                            .FirstOrDefault(p => p.PedidoId == id);
+
+            if(pedido is null)
+            {
+                Response.StatusCode = 404;
+                return View("PedidoNotFound", id.Value);
+            }
+
+            PedidoLancheViewModel pedidoLanche = new()
+            {
+                Pedido = pedido,
+                PedidoDetalhes = pedido.PedidoItens
+            };
+            return View(pedidoLanche);
+
+        }
 
         public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "Nome")
         {
