@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
 namespace Lanches.Models;
 
@@ -46,6 +47,7 @@ public class Lanche
     [Display(Name = "Estoque")]
     public bool EmEstoque { get; set; }
 
+    [Display(Name = "Categoria")]
     public int CategoriaId { get; set; }
     public virtual Categoria Categoria { get; set; }
 
