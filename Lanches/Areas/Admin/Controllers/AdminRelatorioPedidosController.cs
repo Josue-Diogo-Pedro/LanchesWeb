@@ -5,11 +5,11 @@ using System.Xml.Schema;
 namespace Lanches.Areas.Admin.Controllers;
 
 [Area("Admin")]
-public class AdminRelatorioVendasController : Controller
+public class AdminRelatorioPedidosController : Controller
 {
-    private readonly RelatorioVendasServices _relatorioVendasServices;
+    private readonly RelatorioPedidosServices _relatorioVendasServices;
 
-    public AdminRelatorioVendasController(RelatorioVendasServices relatorioVendasServices)
+    public AdminRelatorioPedidosController(RelatorioPedidosServices relatorioVendasServices)
     {
         _relatorioVendasServices = relatorioVendasServices;
     }
@@ -19,7 +19,7 @@ public class AdminRelatorioVendasController : Controller
         return View();
     }
 
-    public async Task<IActionResult> RelatorioVendasSimples(DateTime? minDate, DateTime? maxDate)
+    public async Task<IActionResult> RelatorioPedidosSimples(DateTime? minDate, DateTime? maxDate)
     {
         if (!minDate.HasValue)
         {

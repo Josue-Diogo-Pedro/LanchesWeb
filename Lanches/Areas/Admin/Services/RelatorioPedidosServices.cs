@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lanches.Areas.Admin.Services;
 
-public class RelatorioVendasServices
+public class RelatorioPedidosServices
 {
     private readonly AppDbContext _context;
 
-	public RelatorioVendasServices(AppDbContext context)
+	public RelatorioPedidosServices(AppDbContext context)
 	{
 		_context = context;
 	}
