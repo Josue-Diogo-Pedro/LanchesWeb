@@ -1,3 +1,4 @@
+using Lanches.Areas.Admin.Services;
 using Lanches.Context;
 using Lanches.Models;
 using Lanches.Repositories;
@@ -35,6 +36,7 @@ builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddTransient<ILancheRepository, LancheRepository>();
 builder.Services.AddTransient<IPedidoRepostitory, PedidoRepository>();
 builder.Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
+builder.Services.AddScoped<RelatorioVendasServices>();
 
 builder.Services.AddAuthorization(options =>
 {
