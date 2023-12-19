@@ -1,9 +1,12 @@
 ﻿using Lanches.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
 namespace Lanches.Areas.Admin.Controllers;
 
+[Area("Admin")]
+[Authorize("Admin")]
 public class AdminImagensController : Controller
 {
     private readonly ConfigurationImagens _conf;
