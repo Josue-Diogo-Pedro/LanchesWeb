@@ -95,7 +95,7 @@ public class AdminImagensController : Controller
         if (System.IO.File.Exists(_imagemDeleta))
         {
             System.IO.File.Delete(_imagemDeleta);
-
+             
             ViewData["Deletado"] = $"Arquivo(s) {_imagemDeleta} deletados com sucesso";
         }
 
