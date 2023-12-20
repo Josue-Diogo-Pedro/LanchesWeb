@@ -33,7 +33,7 @@ public class AdminGraficoController : Controller
 
     [HttpGet]
     public IActionResult VendasSemanais(int dias)
-    {
+    { 
         return View();
     }
 
