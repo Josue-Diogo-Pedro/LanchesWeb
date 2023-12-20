@@ -23,7 +23,7 @@ public class AdminImagensController : Controller
         return View();
     }
 
-    public async Task<IActionResult> UploadFiles(List<IFormFile> files)
+    public async Task<IActionResult> UploadFiles(List<IFormFile> files) 
     {
         if(files is null || files.Count == 0)
         {
