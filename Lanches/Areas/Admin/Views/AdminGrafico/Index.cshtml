@@ -1,0 +1,30 @@
+﻿<title>
+    @ViewData["Title"] = "Gráfico de Vendas";
+</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages': ['corechart'] });
+
+    google.charts.setOnLoadCallback(CarregaDados);
+
+    function CarregaDados(){
+        §.ajax({
+            url: '@Url.Action("VendasLanches", "AdminGrafico")',
+            data: {dias: 360},
+            datatype: "json",
+            type: "GET",
+            error: function(xhr, status, error){
+                var err = eval("("+ xhr:responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function(data){
+                GraficoVendasLanches(data);
+                return false;
+            }
+        });
+    }
+
+</script>
