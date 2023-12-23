@@ -6,25 +6,54 @@
 <div id="chart_div" style="width: 900px; height: 500px;"></div>
 
 <script type="text/javascript">
-    google.charts.load('current', {'packages': ['corechart'] });
+    google.charts.load('current', { 'packages': ['corechart'] });
 
     google.charts.setOnLoadCallback(CarregaDados);
 
-    function CarregaDados(){
-        §.ajax({
+    function CarregaDados() {
+        $.ajax({
             url: '@Url.Action("VendasLanches", "AdminGrafico")',
-            data: {dias: 360},
+            data: { dias: 360 },
             datatype: "json",
             type: "GET",
-            error: function(xhr, status, error){
-                var err = eval("("+ xhr:responseText + ")");
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr: responseText + ")");
                 toastr.error(err.message);
             },
-            success: function(data){
+            success: function (data) {
                 GraficoVendasLanches(data);
                 return false;
             }
         });
     }
 
+    function GraficoVendasLanches(data) {
+        var dataArray = [
+            ['Lanche', 'Quantidade', 'Valores(Kz)']
+        ];
+        $.each(data, function (i, item) {
+            dataArray.push([item.lancheNome, item.lancheQuantidade, item.lancheValorTotal]);
+        });
+
+        var data = google.visualization.arrayToDataTable(dataArray);
+
+        var options = {
+            title: 'Lanches - Vendas nos últimos 360 dias',
+            chartArea: {
+                width: '70%'
+            },
+            colors: ['#5202b5', '#d2a828'],
+            hAxis: {
+                title: 'Valor total (em Kwanzas)',
+                minValue: 0
+            },
+            vAxis: {
+                title: 'Lanches'
+            }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+        return false;
+    
 </script>
