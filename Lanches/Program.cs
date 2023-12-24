@@ -18,6 +18,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 FastReport.Utils.RegisteredObjects.AddConnection(typeof(MsSqlDataConnection));
 
+builder.Services.AddFastReport();
+
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
