@@ -1,4 +1,5 @@
 ﻿using FastReport.Data;
+using FastReport.Export.PdfSimple;
 using FastReport.Web;
 using Lanches.Areas.Admin.Services;
 using Lanches.Areas.Admin.Views.FastReportUtils;
@@ -55,6 +56,11 @@ public class AdminLanchesReportController : Controller
 
         webReport.Report.Prepare();
 
-        Stream stream = 
+        Stream stream = new MemoryStream();
+
+        webReport.Report.Export(new PDFSimpleExport(), stream);
+        stream.Position = 0;
+
+        return File(stream, "application/zip", "LancheCategoria.pdf");
     }
 }
