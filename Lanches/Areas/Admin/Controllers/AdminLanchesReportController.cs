@@ -18,6 +18,7 @@ public class AdminLanchesReportController : Controller
         _relatorioLanchesService = relatorioLanchesService;
     }
 
+    [Route("LanchesCategoriaReport")]
     public async Task<IActionResult> LanchesCategoriaReport()
     {
         var webReport = new WebReport();
