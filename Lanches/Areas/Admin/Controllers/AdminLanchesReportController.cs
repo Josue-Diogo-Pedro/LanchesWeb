@@ -61,6 +61,7 @@ public class AdminLanchesReportController : Controller
         webReport.Report.Export(new PDFSimpleExport(), stream);
         stream.Position = 0;
 
-        return File(stream, "application/zip", "LancheCategoria.pdf");
+        //return File(stream, "application/zip", "LancheCategoria.pdf");
+        return new FileStreamResult(stream, "application/pdf");
     }
 }
