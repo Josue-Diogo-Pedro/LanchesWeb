@@ -25,7 +25,7 @@ public class AdminLanchesReportController : Controller
 
         webReport.Report.Dictionary.AddChild(mssqlDataConnection);
 
-        webReport.Report.Load(Path.Combine(_webHsotEnv.ContentRootPath, "www/reports", "LanchesCategoria.frx"));
+        webReport.Report.Load(Path.Combine(_webHsotEnv.ContentRootPath, "wwwroot/reports", "LanchesCategoria.frx"));
 
         var lanches = HelperFastReport.GetDataTable(await _relatorioLanchesService.GetLanchesReportAsync(), "LanchesReport");
         var categorias = HelperFastReport.GetDataTable(await _relatorioLanchesService.GetCategoriasAsync(), "CategoriasReport");
