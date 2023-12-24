@@ -7,8 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FastReport.Data.MsSql" Version="2023.3.0" />
+    <PackageReference Include="FastReport.OpenSource" Version="2023.3.0" />
+    <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2023.3.0" />
+    <PackageReference Include="FastReport.OpenSource.Web" Version="2023.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.20" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.20">
       <PrivateAssets>all</PrivateAssets>
