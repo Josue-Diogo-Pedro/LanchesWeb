@@ -51,6 +51,7 @@ builder.Services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 
 builder.Services.AddScoped<RelatorioPedidosServices>();
 builder.Services.AddScoped<GraficoVendasService>();
+builder.Services.AddScoped<RelatorioLanchesService>();
 
 builder.Services.AddAuthorization(options =>
 {
