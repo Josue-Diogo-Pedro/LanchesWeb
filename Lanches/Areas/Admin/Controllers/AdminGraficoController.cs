@@ -1,4 +1,4 @@
-﻿using Lanches.Services;
+﻿using Lanches.Areas.Admin.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lanches.Areas.Admin.Controllers;

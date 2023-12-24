@@ -1,7 +1,7 @@
 ﻿using Lanches.Context;
 using Lanches.Models;
 
-namespace Lanches.Services;
+namespace Lanches.Areas.Admin.Services;
 
 public class GraficoVendasService
 {
@@ -16,7 +16,7 @@ public class GraficoVendasService
     {
         var data = DateTime.Now.AddDays(-dias);
 
-        var lanches = (from pd in _context.PedidoDetalhes
+        var lanches = from pd in _context.PedidoDetalhes
                        join l in _context.Lanches on pd.LancheId equals l.LancheId
                        where pd.Pedido.PedidoEnviado >= data
                        group pd by new { pd.PedidoId, l.Nome, pd.Quantidade }
@@ -26,7 +26,7 @@ public class GraficoVendasService
                            LancheNome = g.Key.Nome,
                            LanchesQuantidade = g.Sum(q => q.Quantidade),
                            LanchesValorTotal = g.Sum(vt => vt.Quantidade * vt.Lanche.Preco)
-                       });
+                       };
 
         List<LancheGrafico> graficosLanche = new();
 
